@@ -99,6 +99,41 @@
   padding: 40px;
 }
 
+/* Login / register */
+
+#auth-row {
+  justify-content: space-evenly;
+}
+
+#login-container h2,
+#register-container h2 {
+  text-align: center;
+  border-bottom: 2px solid rgb(255, 251, 25);
+  width: 200px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+#login-container form,
+#register-container form {
+  max-width: 400px;
+  margin: 30px auto;
+}
+
+.card-btn {
+  color: black;
+  background-color: rgb(255, 251, 25);
+  border: 2px solid rgb(122, 122, 13);
+  width: 100%;
+  margin-top: 20px;
+}
+
+.card-btn:hover {
+  background-color: transparent;
+  color: rgb(255, 251, 25);
+  border-color: rgb(255, 255, 255);
+}
+
 /* FOOTER */
 #footer {
   background-color: #000;
