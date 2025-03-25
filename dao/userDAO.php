@@ -1,6 +1,6 @@
 <?php
 
-include_once("models/user.php");
+include_once("models/User.php");
 
 class userDAO implements userDAOInterface{
 
@@ -49,7 +49,27 @@ class userDAO implements userDAOInterface{
     }
 
     public function findByEmail($email){
+        
+        if($email != ""){
 
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
+            $stmt->bindParam(":email",$email);
+            $stmt->execute();
+
+            if($stmt->rowCount() > 0){
+
+                $data = $stmt->fetch();
+                $user = $this->builderUser($data);
+
+                return $user;
+
+            }else{
+                return false;
+            }
+
+        }else{
+            return false;
+        }
     }
 
     public function findById($id){

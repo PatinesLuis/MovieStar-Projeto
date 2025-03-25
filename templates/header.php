@@ -1,8 +1,16 @@
 <?php
     require_once("globals.php");
     require_once("db.php");
+    require_once("models/Message.php");
 
-    $flashMessage = [];
+    $message = new Message($BASE_URL);
+
+    $flashMessage = $message->getMessage();
+
+    if(!empty ($flashMessage["msg"])){
+        //limpar msg
+        $message->clearMessage();
+    }
 ?>
 
 <!DOCTYPE html>
