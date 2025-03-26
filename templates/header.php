@@ -2,6 +2,7 @@
     require_once("globals.php");
     require_once("db.php");
     require_once("models/Message.php");
+    require_once("DAO/userDAO.php");
 
     $message = new Message($BASE_URL);
 
@@ -11,6 +12,11 @@
         //limpar msg
         $message->clearMessage();
     }
+
+    $userDao = new UserDAO($conn, $BASE_URL);
+
+    $userData = $userDao->verifyToken(false);
+
 ?>
 
 <!DOCTYPE html>
@@ -46,9 +52,27 @@
             </form>
             <div class="collapse navbar-collapse" id="navbar">
                 <ul class="navbar-nav">
+                    <?php if($userData): ?>
+                        <li class="nav-item">
+                        <a href="<?= $BASE_URL?>newmovie.php" class="nav-link"> 
+                            <i class="far fa-plus-square"></i>incluir filme
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= $BASE_URL?>dashboard.php" class="nav-link"> meus filmes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= $BASE_URL?>editprofile.php" class="nav-link bold"><?= $userData->name?></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="<?= $BASE_URL?>logout.php" class="nav-link"> Sair</a>
+                    </li>
+                    <?php else: ?>
                     <li class="nav-item">
                         <a href="<?= $BASE_URL?>auth.php" class="nav-link"> entrar / cadastrar</a>
                     </li>
+                    <?php endif ?>
+                    
                 </ul>
             </div>
         </nav>

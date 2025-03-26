@@ -8,7 +8,7 @@
 
                 <div class="col-md-4" id="login-container">
                     <h2>Entrar</h2>
-                    <form action="" method="POST">
+                    <form action="auth_process.php" method="POST">
                     <input type="hidden" value="login" name="type">
                         <div class="form-group">
                             <label for="email">E-mail:</label>
