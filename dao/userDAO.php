@@ -24,7 +24,7 @@ class userDAO implements userDAOInterface{
         $user->lastname = $data["lastname"];
         $user->email = $data["email"];
         $user->password = $data["password"];
-        $user->image = $data["image"] ?? null;
+        $user->image = $data["image"];
         $user->bio = $data["bio"];
         $user->token = $data["token"];
 
