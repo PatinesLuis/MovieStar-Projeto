@@ -72,7 +72,5 @@ if($type == 'register'){
         $message->setMessage("Usuario ou senha incorretos", "msg-error","back");
     }
 
-    else{
-        $message->setMessage("informações invalidas", "msg-error","index.php");
-    }
+    
 }
