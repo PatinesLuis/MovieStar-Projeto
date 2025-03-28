@@ -169,7 +169,7 @@ class userDAO implements userDAOInterface{
     }
 
     public function findById($id){
-
+        
     }
 
     public function findByToken($token){

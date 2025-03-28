@@ -44,6 +44,10 @@
   padding: 5px;
 }
 
+.form-group {
+  margin-top: 20px;
+}
+
 #navbar {
   min-width: 30%;
 }
@@ -160,6 +164,30 @@
 
 #change-password-container {
   margin-top: 30px;
+}
+
+/* new movie */
+
+.new-movie-container {
+  text-align: center;
+}
+#add-movie-form {
+  text-align: left;
+}
+
+.movie-image-container {
+  height: 400px;
+  min-width: 200px;
+  background-position: center;
+  background-size: cover;
+}
+
+.page-title:after {
+  content: "";
+  border-bottom: 2px solid yellow;
+  display: block;
+  margin: 0 auto;
+  padding-top: 7px;
 }
 
 /* FOOTER */
