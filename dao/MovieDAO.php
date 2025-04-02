@@ -24,7 +24,7 @@ class MovieDAO implements MovieDAOInterface{
         $movie->trailer = $data["trailer"];
         $movie->category = $data["category"];
         $movie->length = $data["length"];
-        $movie->users_id = $data["users_id"];
+        $movie->user_id = $data["user_id"];
 
         return $movie;
         }
@@ -34,7 +34,23 @@ class MovieDAO implements MovieDAOInterface{
         }
         public function getLatesMovie(){
 
+            $movies = [];
+
+            $stmt = $this->conn->query("SELECT * FROM movies ORDER BY id DESC");
+            $stmt->execute();
+
+
+            // verifica se retornou algo
+            if($stmt->rowCount()> 0){
+                $moviesArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach($moviesArray as $movie){
+                    $movies[] = $this->buildMovie($movie);
+                }
+            }
+            return $movies;
         }
+
         public function getMoviesByCategory($category){
 
         }

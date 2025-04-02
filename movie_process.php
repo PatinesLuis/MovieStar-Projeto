@@ -40,39 +40,37 @@ if($type === "create"){
          $movie->length = $length; 
          $movie->user_id = $userData->id;
 
-         //upload de imagem do filme
-        if(isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])){
-            $image = $_FILES["image"];
-            $imageType = ["image/jpeg" , "image/jpg", "image/png"];
-            $jpgArray = ["image/jpeg" , "image/jpg"];
+            // Upload de imagem do filme
+      if(isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {
 
-            //chegando tipo de imagem
+        $image = $_FILES["image"];
+        $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+        $jpgArray = ["image/jpeg", "image/jpg"];
 
-            if(in_array($image["type"],$imageType)){
+        // Checando tipo da imagem
+        if(in_array($image["type"], $imageTypes)) {
 
-                //checar se é pnj
+          // Checa se imagem é jpg
+          if(in_array($image["type"], $jpgArray)) {
+            $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+          } else {
+            $imageFile = imagecreatefrompng($image["tmp_name"]);
+          }
 
-                if(in_array($image["type"], $jpgArray)){
-                    $imageFile = imagecreatefromjpeg($image["tmp_name"]);
-                }else{
-                 //png
-                 $imageFile = imagecreatefrompng($image["tmp_name"]);
-                }
+          // Gerando o nome da imagem
+          $imageName = $movie->imageGenerateName();
 
-                $imageName = $movie->imageGenerateName();
-                imagejpeg($imageFile, "./img/movie/" . $imageName, 100);
+          imagejpeg($imageFile, "./img/movie/" . $imageName, 100);
 
-                $movie->image = $imageName;
-                
-                
+          $movie->image = $imageName;
 
-            }else{  
-                $message->setMessage("tipo de imagem invalida", "msg-error","back");
-            }
-        }
-        
+    } else {  
+        $message->setMessage("Tipo de imagem inválido", "msg-error", "back");
+    }
+}
 
-        $movieDAO->create($movie);
+// Salva os dados do filme no banco
+$movieDAO->create($movie);
     }else{
         $message->setMessage("Você precisa adicionar pelo menos; titulo, descrição e categoria.", "msg-error","back");
     }
