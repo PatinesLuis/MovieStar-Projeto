@@ -233,6 +233,90 @@
   margin-top: 30px;
 }
 
+#add-movie-container .card-btn{
+  margin: auto;
+  width: 20%;
+}
+
+/* DASHBOARD */
+
+#add-movie-container{
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+
+
+.table th{
+  background-color: #121212;
+  color: #fff;
+}
+
+.table td{
+  background-color: #121212;
+  color: #fff;
+}
+
+#movies-dashboard .table th{
+  border-top: none;
+}
+
+#movies-dashboard .table tr{
+  padding: 15px 0;
+}
+
+.table-movie-title{
+  color: #fff;
+  font-weight: bold;
+  transition: 0.5;
+}
+
+.table-movie-title:hover{
+  color: yellow;
+}
+
+.actions-column{
+  max-width: 75px;
+  text-align: center;
+  
+}
+
+.actions-column form{
+  display: inline-block;
+}
+
+.edit-btn, .delete-btn{
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin: 0 5px;
+  font-weight: bold;
+  transition: 0.5s;
+  border: none;
+}
+
+.edit-btn{
+  background-color: #5799ef;
+  color: #fff;
+  text-decoration: none;
+}
+
+.edit-btn:hover{
+  background-color: transparent;
+  color: #5799ef;
+
+}
+
+.delete-btn{
+  background-color: #ef5757;
+  color: #fff;
+}
+
+.delete-btn:hover{
+  background-color: transparent;
+  color: #ef5757;
+  text-decoration: none;
+}
+
 /* new movie */
 
 .new-movie-container {

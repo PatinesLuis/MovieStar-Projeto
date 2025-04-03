@@ -53,14 +53,62 @@ class MovieDAO implements MovieDAOInterface{
 
         public function getMoviesByCategory($category){
 
+            $movies = [];
+
+            $stmt = $this->conn->prepare("SELECT * FROM movies WHERE CATEGORY = :category");
+            $stmt->bindParam(":category", $category);
+            $stmt->execute();
+
+
+            // verifica se retornou algo
+            if($stmt->rowCount()> 0){
+                $moviesArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach($moviesArray as $movie){
+                    $movies[] = $this->buildMovie($movie);
+                }
+            }
+            return $movies;
+
         }
 
         public function getMoviesByUserId($id){
+            $movies = [];
 
+            $stmt = $this->conn->prepare("SELECT * FROM movies WHERE user_id = :id");
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+
+
+            // verifica se retornou algo
+            if($stmt->rowCount()> 0){
+                $moviesArray = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                foreach($moviesArray as $movie){
+                    $movies[] = $this->buildMovie($movie);
+                }
+            }
+            return $movies;
         }
 
         public function findById($id){
+            $movie = [];
 
+            $stmt = $this->conn->prepare("SELECT * FROM movies WHERE id = :id");
+            $stmt->bindParam(":id", $id);
+            $stmt->execute();
+
+
+            // verifica se retornou algo
+            if($stmt->rowCount()> 0){
+                $movieData = $stmt->fetch();
+
+                $movie = $this->buildMovie($movieData);
+
+                return $movie;
+            }else{
+                return false;
+            }
         }
 
         public function findByTitle($title){
