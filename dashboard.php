@@ -42,7 +42,7 @@
                             <a href="<?= $BASE_URL ?>editMovie.php?id=<?=$movie->id?>" class="edit-btn">
                                 <i class="far fa-edit"></i>Editar
                             </a>
-                            <form action="<?= $BASE_URL ?>movie_Process.php">
+                            <form action="<?= $BASE_URL ?>movie_Process.php" method="POST">
                                 <input type="hidden" name="type" value="delete">
                                 <input type="hidden" name="id" value="<?=$movie->id?>">
                                 <button type="submit" class="delete-btn">
