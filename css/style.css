@@ -343,12 +343,54 @@
   background-size: cover;
 }
 
+.page-title{
+  text-align: center;
+}
+
 .page-title:after {
   content: "";
   border-bottom: 2px solid yellow;
   display: block;
   margin: 0 auto;
   padding-top: 7px;
+}
+
+/* profile */
+
+.profile-container{
+  justify-content: center;
+}
+
+.profile-container .profile-image{
+  margin: 20px auto;
+}
+
+.profile-description{
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.added-movies-container,
+.about-container{
+  padding-top: 20px;
+}
+
+.about-container{
+  text-align: center;
+  background-color: #333;
+  border-bottom: 3px solid #ccc;
+}
+
+.added-movies-container{
+  background-color: #333;
+}
+
+.added-movies-container .movies-container{
+  padding: 20px;
+}
+
+.added-movies-container .movie-card{
+  width: 31%;
 }
 
 /* movie */

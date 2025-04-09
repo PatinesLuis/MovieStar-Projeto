@@ -93,6 +93,71 @@ $movieDAO->create($movie);
   }
 }
 
+}else if($type === "update"){
+
+    $title = filter_input(INPUT_POST,"title");
+    $description = filter_input(INPUT_POST,"description");
+    $trailer = filter_input(INPUT_POST,"trailer");
+    $category = filter_input(INPUT_POST,"category");
+    $length = filter_input(INPUT_POST,"length");
+    $id = filter_input(INPUT_POST,"id");
+
+    $movieData = $movieDAO->findById($id);
+
+    //verifica se encontrou o filme
+
+    if($movieData){
+
+      //verifica se o filme é do usuario
+      if($movieData->user_id === $userData->id){
+
+        if(!empty($title) && !empty($description) && !empty($category)){
+        $movieData->title = $title;
+        $movieData->description = $description;
+        $movieData->trailer = $trailer;
+        $movieData->category = $category;
+        $movieData->length = $length;
+        $movieData->id = $id;
+
+        if(isset($_FILES["image"]) && !empty($_FILES["image"]["tmp_name"])) {
+
+          $movie = new Movie();
+
+          $image = $_FILES["image"];
+          $imageTypes = ["image/jpeg", "image/jpg", "image/png"];
+          $jpgArray = ["image/jpeg", "image/jpg"];
+  
+          // Checando tipo da imagem
+          if(in_array($image["type"], $imageTypes)) {
+  
+            // Checa se imagem é jpg
+            if(in_array($image["type"], $jpgArray)) {
+              $imageFile = imagecreatefromjpeg($image["tmp_name"]);
+            } else {
+              $imageFile = imagecreatefrompng($image["tmp_name"]);
+            }
+  
+            // Gerando o nome da imagem
+            $imageName = $movie->imageGenerateName();
+  
+            imagejpeg($imageFile, "./img/movie/" . $imageName, 100);
+  
+            $movieData->image = $imageName;
+          }
+        }
+
+        $movieDAO->update($movieData);
+
+        }else{
+          $message->setMessage("Você precisa adicionar pelo menos; titulo, descrição e categoria.", "msg-error","back");
+        }
+
+      }else{
+        $message->setMessage("informações invalidas", "msg-error","index.php");
+      }
+    }
+
+
 }else{
     $message->setMessage("informações invalidas", "msg-error","index.php");
 }
