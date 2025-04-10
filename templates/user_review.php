@@ -1,4 +1,3 @@
-<?php print_r($review);?>
 
 <div class="col-md-12">
                 <div class="row">
@@ -7,7 +6,7 @@
                     </div>
                     <div class="col-md-9 author-details-container">
                         <h4 class="author-name">
-                            <a href="<?= $BASE_URL?>profile.php?=<?=$review->user->id?>"><?=$review->user->name?></a>
+                            <a href="<?= $BASE_URL?>profile.php?id=<?=$review->user->id?>"><?=$review->user->name?></a>
                         </h4>
                         <p><i class="fas fa-star"></i><?=$review->rating?></p>
                     </div>
