@@ -3,6 +3,8 @@
 include_once("models/movie.php");
 include_once("models/Message.php");
 
+include_once("dao/ReviewDAO.php");
+
 class MovieDAO implements MovieDAOInterface{
     private $conn;
     private $url;
@@ -25,6 +27,13 @@ class MovieDAO implements MovieDAOInterface{
         $movie->category = $data["category"];
         $movie->length = $data["length"];
         $movie->user_id = $data["user_id"];
+
+        //recebe as ratings do filme
+        $reviewDao = new ReviewDAO($this->conn, $this->url);
+
+        $rating = $reviewDao->getRatings($movie->id);
+
+        $movie->rating = $rating;
 
         return $movie;
         }

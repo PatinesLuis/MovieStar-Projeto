@@ -37,7 +37,7 @@
                     <tr >
                         <td scope="row"><?php echo $movie->id ?></td>
                         <td><a href="<?= $BASE_URL ?>movie.php?id=<?=$movie->id?>" class="table-movie-title"><?php echo $movie->title ?></a></td>
-                        <td><i class="fas fa-star"></i>9</td>
+                        <td><i class="fas fa-star"></i><?=$movie->rating?></td>
                         <td class="actions-column">
                             <a href="<?= $BASE_URL ?>editMovie.php?id=<?=$movie->id?>" class="edit-btn">
                                 <i class="far fa-edit"></i>Editar
